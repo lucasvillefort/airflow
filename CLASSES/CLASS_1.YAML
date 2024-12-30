@@ -107,3 +107,17 @@
   - email_on_retry: to set if the email is gonna be sent if the task retries
   - email_on_success: to set if the email is gonna be sent if the task is successful
 
+4) setting up gmail:
+  - go to https://myaccount.google.com/
+  - security
+  - 2-step verification: on
+  - app password: generate a password for the app
+  - in the docker-compose.yaml:
+      - AIRFLOW__SMTP__SMTP_USER: 'my email address'
+      - AIRFLOW__SMTP__SMTP_PASSWORD: 'the password generated'
+      - AIRFLOW__SMTP__SMTP_MAIL_FROM: 'Airflow'
+      - AIRFLOW__SMTP__SMTP_PORT: 587
+      - AIRFLOW__SMTP__SMTP_HOST: smtp.gmail.com
+
+  - docker-compose down
+  - docker-compose up -d
