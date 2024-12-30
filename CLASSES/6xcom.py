@@ -9,7 +9,7 @@ from airflow.operators.python_operator import PythonOperator
 # it only a object that we can use to create a task
 dag = DAG(
     "xcom dag",
-    description="A simple tutorial DAG",
+    description="xcom tutorial DAG",
     schedule_interval=timedelta(days=1),
     start_date=datetime(2021, 1, 1),
     catchup=False,
