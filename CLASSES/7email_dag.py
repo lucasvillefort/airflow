@@ -11,8 +11,8 @@ default_args = {
     "email": ["aws@evoluth.com.br"],
     "email_on_failure": True,
     "email_on_retry": False,
-    "retries": 1,
-    "retry_delay": timedelta(seconds=10),
+    "retries": 1, # it will retry 1 time in case of failure
+    "retry_delay": timedelta(seconds=10), # it will wait 10 seconds before retrying
 }
 
 dag = DAG(
