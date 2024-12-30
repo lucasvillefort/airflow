@@ -96,6 +96,7 @@
   - start_date: to set the start date of the dag
   - end_date: to set the end date of the dag
   - catchup: to set if the dag is gonna run all the tasks that were not run in the past
+  - backfill: to set if the dag is gonna run all the tasks that were not run in the past but only once
   - max_active_runs: to set the max number of active runs of the dag
   - concurrency: to set the number of tasks that can run at the same time
   - depends_on_past: to set if the task is gonna run only if the last task was successful
@@ -105,4 +106,4 @@
   - email_on_failure: to set if the email is gonna be sent if the task fails
   - email_on_retry: to set if the email is gonna be sent if the task retries
   - email_on_success: to set if the email is gonna be sent if the task is successful
-  - ...
+
