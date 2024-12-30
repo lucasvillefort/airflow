@@ -1,0 +1,87 @@
+1) AIRFLOW:
+  - it is a open source workflow management system
+  - it can lead with erros, log, monitor and schedule workflows, repeat tasks, trigger alerts, etc.
+  - its source is a dag (directed acyclic graph) which is a collection of all the tasks you want to run, 
+    organized in a way that reflects their relationships and dependencies. it is a ELt tool.
+  - task is a instace of an operator that is what is gonna be made in the dag
+  - providers are the modules that are used in the operators to have access to other tools such as awd, databricks, mysql, etc.
+
+  - installation:
+    - install docker
+    - install airflow with docker:
+        - create a folder called airflow in your home directory
+        - put the file docker-compose.yaml in the folder
+        - .env file in the folder
+         
+        - in terminal:
+          - cd airflow
+          - docker-compose up -d # to start the container
+          - docker-compose ps # to check all images running and installed in the container
+
+        in the browser:
+          - localhost:8080
+          - login: airflow
+          - password: airflow
+  - how is a DAG in python:
+      from airflow import DAG
+      from airflow.operators.base_operator import BaseOperator
+      from datetime import datetime, timedelta
+
+      dag = DAG(
+          'my_dag',
+          default_args=default_args,
+          description='A simple tutorial DAG',
+          schedule_interval=timedelta(days=1),
+          start_date=datetime(2021, 1, 1),
+          catchup=False
+      )
+
+      task1 = BashOperator(
+          task_id='task1',
+          bash_command='echo "Hello World"',
+          dag=dag
+      )
+      task2 = BashOperator(
+          task_id='task2',
+          bash_command='echo "Hello World"',
+          dag=dag
+      )
+        
+      task3 = BashOperator(
+          task_id='task3',
+          bash_command='echo "Hello World"',
+          dag=dag
+      )
+
+      task1 >> task2 >> task3
+
+  - setting the docker-compose:
+    AIRFLOW__CORE__LOAD_EXAMPLES: False
+    AIRFLOW__WEBSERVER__EXPOSE__CONFIG: 'true' # to expose the config
+    AIRFLOW__SCHEDULER__MIN_FILE_PROCESS_INTERVAL: 5 # to set the interval of the scheduler to check the dags
+    AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: 20 # to set the interval of the scheduler to check the dags
+  
+  - docker-compose down # to stop the container
+  - docker-compose up -d  # to start the container
+
+2) type of operator:
+  - bash operator: to run bash commands
+  - python operator: to run python functions
+  - http operator: to make http requests
+  - email operator: to send emails
+  - sql operator: to run sql commands
+  - docker operator: to run docker commands
+  - kubernetes operator: to run kubernetes commands
+  - dummy operator: to create a dummy task
+  - file sensor: to check if a file exists
+  - http sensor: to check if a http request was successful
+  - triggerDagRunOperator: to trigger another dag (execute another dag)
+  - triggerRule: to trigger a dag based on a rule:
+    - all_success # to trigger a dag if all tasks are successful
+    - all_failed # to trigger a dag if all tasks are failed
+    - one_failed # to trigger a dag if one task is failed
+    - one_success # to trigger a dag if one task is successful
+    - all_done # to trigger a dag if all tasks are done
+    - none_failed # to trigger a dag if none task is failed
+    - none_skipped # to trigger a dag if none task is skipped
+    - dummy # to trigger a dag if a dummy task is done
