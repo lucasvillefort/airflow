@@ -13,6 +13,7 @@ default_args = {
     "email_on_retry": False,
     "retries": 1,
     "retry_delay": timedelta(minutes=5),
+    "email": ["test@test.com"],
 }
 
 # it only a object that we can use to create a task
