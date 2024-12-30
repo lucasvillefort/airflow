@@ -85,3 +85,24 @@
     - none_failed # to trigger a dag if none task is failed
     - none_skipped # to trigger a dag if none task is skipped
     - dummy # to trigger a dag if a dummy task is done
+  
+3) parametrys of dag:
+  - default_args: to set the default arguments of the dag for all the tasks
+  - description: to set the description of the dag
+  - schedule_interval: to set the interval of the dag:
+    - timedelta(days=1)
+    - cron: '0 0 * * *' # 0 minutes, 0 hours, every day, every month, every day of the week
+    - @daily, @hourly, @weekly, @monthly, @yearly...
+  - start_date: to set the start date of the dag
+  - end_date: to set the end date of the dag
+  - catchup: to set if the dag is gonna run all the tasks that were not run in the past
+  - max_active_runs: to set the max number of active runs of the dag
+  - concurrency: to set the number of tasks that can run at the same time
+  - depends_on_past: to set if the task is gonna run only if the last task was successful
+  - retries: to set the number of retries of the task
+  - retry_delay: to set the delay between the retries
+  - retry_exponential_backoff: to set if the delay between the retries is gonna be exponential
+  - email_on_failure: to set if the email is gonna be sent if the task fails
+  - email_on_retry: to set if the email is gonna be sent if the task retries
+  - email_on_success: to set if the email is gonna be sent if the task is successful
+  - ...
