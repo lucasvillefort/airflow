@@ -1,8 +1,6 @@
 # Domine Apache Airflow. https://www.eia.ai/
 import statistics as sts
 from datetime import datetime, timedelta
-from re import sub
-from turtle import st
 
 import pandas as pd
 from airflow import DAG
@@ -60,6 +58,6 @@ def data_cleaning():
     # to save the dataset:
     dataset.to_csv("/opt/airflow/data/Churn_cleaned.csv", sep=";", index=False)
     
-    task1 = PythonOperator(task_id="data_cleaning", python_callable=data_cleaning, dag=dag)
+task1 = PythonOperator(task_id="data_cleaning", python_callable=data_cleaning, dag=dag)
     
-    task1
+task1
