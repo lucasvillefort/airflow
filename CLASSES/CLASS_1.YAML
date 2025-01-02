@@ -121,3 +121,41 @@
 
   - docker-compose down
   - docker-compose up -d
+
+5) task dummy:
+  - when we have a list of tasks before and another one after, we can use the dummy task to connect them
+  - [task1, task2, task3] >> dummy >> [task4, task5, task6]
+
+6) pools:
+  - it a way to limit the number of tasks that can run at the same time
+  - example: if we have a database that can only handle 10 connections, we can set a pool with 10 connections
+  - in the dag:
+    - from airflow.models.pool import Pool
+    - pool = Pool(
+        pool='my_pool',
+        slots=10,
+        description='my pool'
+      )
+    - pool = Pool.get_pool('my_pool')
+    - pool.slots
+
+  - or define it in localhost:8080 -> Admin -> Pools
+
+7) branchs:
+  - it is a way to create a condition in the dag
+  - create a dag with a branch operator:
+    - from airflow.operators.python_operator import BranchPythonOperator
+    - from airflow.operators.dummy_operator import python_operator
+
+    - def branch_func(**kwargs):
+        if True:
+          return 'task1'
+        else:
+          return 'task2'
+    - branch = BranchPythonOperator(
+        task_id='branch',
+        python_callable=branch_func,
+        provide_context=True,
+        dag=dag
+      )
+    - [task1, task2] >> branch >> [task3, task4]
