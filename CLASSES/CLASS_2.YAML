@@ -4,3 +4,12 @@
 2) producer and consumer:
   - they will check if the file was updated and if it was they will process it
   
+3) provider:
+  - it will provide the data to the consumer. It will be a file or a database from where the data will be extracteds
+  - example database providers postgres:
+    - psycopg2: to connect to the database
+    - sqlalchemy: to connect to the database
+    - pandas: to read the data from the database
+    - dask: to read the data from the database
+    - pyarrow: to read the data from the database
+    - apache-airflow-providers-postgres: to connect to the database
