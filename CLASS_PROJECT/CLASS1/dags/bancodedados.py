@@ -1,6 +1,18 @@
 # Domine Apache Airflow. https://www.eia.ai/
 # we need to have docker-compose.yaml and .env -> docker-compose up -d -> docker-compose ps 
-# docker exec -it class_airflow_webserver_1 bash -> at opt/airflow terminal -> airflow dags list -> airflow dags trigger -e 2023-03-05 hook
+# comands:
+        # docker-compose ps -> it will show all the containers
+        # docker exec -it class_airflow_webserver_1 bash -> enter in the container 
+        # at opt/airflow terminal:
+                # airflow dags list 
+                # airflow dags trigger -e 2023-03-05 hook
+                # airflow tasks list email_test -> it will list the tasks of the dag email_test
+                # airflow tasks test email_test tsk1 2023-03-05 -> it will test the task
+                # airflow variables list -> it will list the variables
+                # airflow connections list -> it will list the connections
+                # airflow cheat-sheet -> it will show all the commands
+        
+        
 from datetime import datetime
 
 from airflow import DAG

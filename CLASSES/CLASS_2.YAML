@@ -3,13 +3,41 @@
 
 2) producer and consumer:
   - they will check if the file was updated and if it was they will process it
-  
+
 3) provider:
   - it will provide the data to the consumer. It will be a file or a database from where the data will be extracteds
   - example database providers postgres:
-    - psycopg2: to connect to the database
-    - sqlalchemy: to connect to the database
-    - pandas: to read the data from the database
-    - dask: to read the data from the database
-    - pyarrow: to read the data from the database
-    - apache-airflow-providers-postgres: to connect to the database
+      - psycopg2: to connect to the database
+      - sqlalchemy: to connect to the database
+      - pandas: to read the data from the database
+      - dask: to read the data from the database
+      - pyarrow: to read the data from the database
+      - apache-airflow-providers-postgres: to connect to the database
+
+4) comands:
+  - we need to have docker-compose.yaml and .env -> docker-compose up -d -> docker-compose ps
+  - comands:
+      - docker-compose ps -> it will show all the containers
+      - docker exec -it class_airflow_webserver_1 bash -> enter in the container
+      - at opt/airflow terminal:
+          - airflow dags list
+          - airflow dags trigger -e 2023-03-05 hook
+          - airflow tasks list email_test -> it will list the tasks of the dag email_test
+          - airflow tasks test email_test tsk1 2023-03-05 -> it will test the task
+          - airflow variables list -> it will list the variables
+          - airflow connections list -> it will list the connections
+          - airflow cheat-sheet -> it will show all the commands
+
+5) setting airflow:
+  - it is splited into 3 parts:
+      - airflow webserver -> it will show the web interface
+      - airflow scheduler -> it will execute the tasks in the background and schedule them in the future
+      - airflow core -> it has the mean settings
+  - setting airflow by docker-compose.yaml and environment variables:
+      Example how to do: 1) AIRFLOW__ + setion + __ + setting = value
+:
+6) plugins:
+  - it is a way to add custom sensors to airflow
+  - it is a python class that allows us to add custom operators to airflow
+  - exercise with BigDataOperator to save a csv file to a parquet file:
+      - all way to do it is at criandoplugis folder
