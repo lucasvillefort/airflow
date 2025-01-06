@@ -1,5 +1,6 @@
 # Domine Apache Airflow. https://www.eia.ai/
-# we need to have docker-compose.yaml and .env -> docker-compose up -d
+# we need to have docker-compose.yaml and .env -> docker-compose up -d -> docker-compose ps 
+# docker exec -it class_airflow_webserver_1 bash -> at opt/airflow terminal -> airflow dags list -> airflow dags trigger -e 2023-03-05 hook
 from datetime import datetime
 
 from airflow import DAG

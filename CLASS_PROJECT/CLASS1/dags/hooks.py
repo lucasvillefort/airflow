@@ -48,4 +48,4 @@ print_data_task = PythonOperator(task_id='print_data_task',
                                     provide_context=True,
                                     dag=dag)
 
-create_table_task >> insert_data_task >> select_data_task >> print_data_task
+create_table_task >> insert_data_task >> select_data_task >> print_data_task 
